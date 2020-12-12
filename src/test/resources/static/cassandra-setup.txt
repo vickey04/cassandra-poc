@@ -1,0 +1,12 @@
+CREATE KEYSPACE financial_metrics WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+CREATE TABLE financial_metrics.metric_timeseries (
+   revision text,
+   ticker text,
+   metric text,
+   metric_value double,
+   period date,
+   PRIMARY KEY ((revision, ticker, metric), period))
+WITH CLUSTERING ORDER BY (period DESC);
+
+INSERT INTO financial_metrics.metric_timeseries (revision, ticker, metric, metric_value, period) values ('R1', 'T1', 'M1', 234.76, '2020-08-20');

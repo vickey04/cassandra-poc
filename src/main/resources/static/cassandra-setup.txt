@@ -1,0 +1,30 @@
+CREATE KEYSPACE financial_metrics WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+CREATE TABLE financial_metrics.metric_timeseries (
+   revision text,
+   ticker text,
+   metric text,
+   metric_value double,
+   period date,
+   PRIMARY KEY ((revision, ticker, metric), period))
+WITH CLUSTERING ORDER BY (period DESC);
+
+
+CREATE KEYSPACE finance WITH REPLICATION = { 'class' : 'SimpleStrategy', 'replication_factor' : 1 };
+
+CREATE TABLE finance.metric_data (
+   revision text,
+   ticker text,
+   metric text,
+   period date,
+   metric_value double,
+   PRIMARY KEY (revision, ticker));
+
+
+INSERT INTO financial_metrics.metric_timeseries (revision, ticker, metric, metric_value, period) values ('R1', 'T1', 'M1', 234.76, '2020-08-20');
+INSERT INTO financial_metrics.metric_timeseries (revision, ticker, metric,period,  metric_value) values ('R1', 'T1', 'M1', '2020-08-20', 234.76);
+
+INSERT INTO finance.metric_data (revision, ticker, metric, period,  metric_value) values ('R1', 'T1', 'M1', '2020-08-20', 234.76);
+INSERT INTO finance.metric_data values ('R1', 'T1', 'M1', '2020-08-20', 234.76);
+
+ COPY metric_data (revision, ticker, metric, period,  metric_value) FROM '/mnt/d/financial-metrics-data/REV1_part_1_metric_data.csv' WITH DELIMITER=',' AND HEADER=false;
