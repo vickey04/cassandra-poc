@@ -1,0 +1,555 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<jmeterTestPlan version="1.2" properties="5.0" jmeter="5.3">
+  <hashTree>
+    <TestPlan guiclass="TestPlanGui" testclass="TestPlan" testname="Cassandra Test" enabled="true">
+      <stringProp name="TestPlan.comments"></stringProp>
+      <boolProp name="TestPlan.functional_mode">false</boolProp>
+      <boolProp name="TestPlan.tearDown_on_shutdown">true</boolProp>
+      <boolProp name="TestPlan.serialize_threadgroups">false</boolProp>
+      <elementProp name="TestPlan.user_defined_variables" elementType="Arguments" guiclass="ArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+        <collectionProp name="Arguments.arguments"/>
+      </elementProp>
+      <stringProp name="TestPlan.user_define_classpath"></stringProp>
+    </TestPlan>
+    <hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Users" enabled="true">
+        <stringProp name="ThreadGroup.on_sample_error">continue</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <intProp name="LoopController.loops">-1</intProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">1</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Get Ticker Data" enabled="true">
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments" guiclass="HTTPArgumentsPanel" testclass="Arguments" testname="User Defined Variables" enabled="true">
+            <collectionProp name="Arguments.arguments"/>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">application/json</stringProp>
+          <stringProp name="HTTPSampler.path">/api/get/REV1/TICK1</stringProp>
+          <stringProp name="HTTPSampler.method">GET</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+      <ThreadGroup guiclass="ThreadGroupGui" testclass="ThreadGroup" testname="Users 2" enabled="false">
+        <stringProp name="ThreadGroup.on_sample_error">stoptest</stringProp>
+        <elementProp name="ThreadGroup.main_controller" elementType="LoopController" guiclass="LoopControlPanel" testclass="LoopController" testname="Loop Controller" enabled="true">
+          <boolProp name="LoopController.continue_forever">false</boolProp>
+          <stringProp name="LoopController.loops">2</stringProp>
+        </elementProp>
+        <stringProp name="ThreadGroup.num_threads">1</stringProp>
+        <stringProp name="ThreadGroup.ramp_time">3</stringProp>
+        <boolProp name="ThreadGroup.scheduler">false</boolProp>
+        <stringProp name="ThreadGroup.duration"></stringProp>
+        <stringProp name="ThreadGroup.delay"></stringProp>
+        <boolProp name="ThreadGroup.same_user_on_next_iteration">true</boolProp>
+      </ThreadGroup>
+      <hashTree>
+        <HTTPSamplerProxy guiclass="HttpTestSampleGui" testclass="HTTPSamplerProxy" testname="Write Ticker Data" enabled="true">
+          <boolProp name="HTTPSampler.postBodyRaw">true</boolProp>
+          <elementProp name="HTTPsampler.Arguments" elementType="Arguments">
+            <collectionProp name="Arguments.arguments">
+              <elementProp name="" elementType="HTTPArgument">
+                <boolProp name="HTTPArgument.always_encode">false</boolProp>
+                <stringProp name="Argument.value">{&#xd;
+  &quot;revision&quot;: &quot;REV1&quot;,&#xd;
+  &quot;ticker&quot;: &quot;TICK1&quot;,&#xd;
+  &quot;metricTimeseries&quot;: {&#xd;
+    &quot;MTR1&quot;: {&#xd;
+      &quot;2019-09-30&quot;: 4255.532424176825,&#xd;
+      &quot;2019-06-30&quot;: 7996.226301640719,&#xd;
+      &quot;2019-03-30&quot;: 1235.3529454862414,&#xd;
+      &quot;2018-12-30&quot;: 7755.980858418139,&#xd;
+      &quot;2018-09-30&quot;: 3076.520083029941,&#xd;
+      &quot;2018-06-30&quot;: 9715.772785251364,&#xd;
+      &quot;2018-03-30&quot;: 4452.5736783547345,&#xd;
+      &quot;2017-12-30&quot;: 5890.037550202942,&#xd;
+      &quot;2017-09-30&quot;: 5522.347676606322,&#xd;
+      &quot;2017-06-30&quot;: 3419.9763620280696,&#xd;
+      &quot;2017-03-30&quot;: 7999.181654838565,&#xd;
+      &quot;2016-12-30&quot;: 1503.5229400055919,&#xd;
+      &quot;2016-09-30&quot;: 5175.01245723732,&#xd;
+      &quot;2016-06-30&quot;: 4152.152049867217,&#xd;
+      &quot;2016-03-30&quot;: 4557.907602932075,&#xd;
+      &quot;2015-12-30&quot;: 2262.1454557907805,&#xd;
+      &quot;2015-09-30&quot;: 99.68018099533747,&#xd;
+      &quot;2015-06-30&quot;: 6983.143633065953,&#xd;
+      &quot;2015-03-30&quot;: 7069.653413069492,&#xd;
+      &quot;2014-12-30&quot;: 7165.89689795289,&#xd;
+      &quot;2014-09-30&quot;: 8480.330165237177,&#xd;
+      &quot;2014-06-30&quot;: 1377.5296538735038,&#xd;
+      &quot;2014-03-30&quot;: 9507.347201176943,&#xd;
+      &quot;2013-12-30&quot;: 7785.067470015552,&#xd;
+      &quot;2013-09-30&quot;: 3069.1703115838327,&#xd;
+      &quot;2013-06-30&quot;: 195.48392543598112,&#xd;
+      &quot;2013-03-30&quot;: 7998.85515088033,&#xd;
+      &quot;2012-12-30&quot;: 1417.4808753111772,&#xd;
+      &quot;2012-09-30&quot;: 9140.97586385386,&#xd;
+      &quot;2012-06-30&quot;: 4311.258920395853,&#xd;
+      &quot;2012-03-30&quot;: 4239.4654850829875,&#xd;
+      &quot;2011-12-30&quot;: 8347.674529207767,&#xd;
+      &quot;2011-09-30&quot;: 3427.392240111182,&#xd;
+      &quot;2011-06-30&quot;: 7607.686017317745,&#xd;
+      &quot;2011-03-30&quot;: 7426.167937176645,&#xd;
+      &quot;2010-12-30&quot;: 6662.488181917,&#xd;
+      &quot;2010-09-30&quot;: 280.7517224004741,&#xd;
+      &quot;2010-06-30&quot;: 6350.121849736883,&#xd;
+      &quot;2010-03-30&quot;: 1378.265505669943,&#xd;
+      &quot;2009-12-30&quot;: 2666.870283079716,&#xd;
+      &quot;2009-09-30&quot;: 4482.093040434284,&#xd;
+      &quot;2009-06-30&quot;: 6652.946322043996,&#xd;
+      &quot;2009-03-30&quot;: 6481.80978321268,&#xd;
+      &quot;2008-12-30&quot;: 4348.701093906112,&#xd;
+      &quot;2008-09-30&quot;: 863.8326526115445,&#xd;
+      &quot;2008-06-30&quot;: 6127.002335337217,&#xd;
+      &quot;2008-03-30&quot;: 9008.926983980657,&#xd;
+      &quot;2007-12-30&quot;: 3962.0285753601124,&#xd;
+      &quot;2007-09-30&quot;: 7763.927135791895,&#xd;
+      &quot;2007-06-30&quot;: 9337.292654559564,&#xd;
+      &quot;2007-03-30&quot;: 9517.299394729926,&#xd;
+      &quot;2006-12-30&quot;: 5734.350201492655,&#xd;
+      &quot;2006-09-30&quot;: 8565.371169338172,&#xd;
+      &quot;2006-06-30&quot;: 4606.785846357776,&#xd;
+      &quot;2006-03-30&quot;: 5129.885901965828,&#xd;
+      &quot;2005-12-30&quot;: 2455.425839371189,&#xd;
+      &quot;2005-09-30&quot;: 6002.517709859401,&#xd;
+      &quot;2005-06-30&quot;: 6674.358559185892,&#xd;
+      &quot;2005-03-31&quot;: 1030.424825917675,&#xd;
+      &quot;2004-12-31&quot;: 6272.588010707629&#xd;
+    },&#xd;
+    &quot;MTR2&quot;: {&#xd;
+      &quot;2019-09-30&quot;: 4255.532424176825,&#xd;
+      &quot;2019-06-30&quot;: 7996.226301640719,&#xd;
+      &quot;2019-03-30&quot;: 1235.3529454862414,&#xd;
+      &quot;2018-12-30&quot;: 7755.980858418139,&#xd;
+      &quot;2018-09-30&quot;: 3076.520083029941,&#xd;
+      &quot;2018-06-30&quot;: 9715.772785251364,&#xd;
+      &quot;2018-03-30&quot;: 4452.5736783547345,&#xd;
+      &quot;2017-12-30&quot;: 5890.037550202942,&#xd;
+      &quot;2017-09-30&quot;: 5522.347676606322,&#xd;
+      &quot;2017-06-30&quot;: 3419.9763620280696,&#xd;
+      &quot;2017-03-30&quot;: 7999.181654838565,&#xd;
+      &quot;2016-12-30&quot;: 1503.5229400055919,&#xd;
+      &quot;2016-09-30&quot;: 5175.01245723732,&#xd;
+      &quot;2016-06-30&quot;: 4152.152049867217,&#xd;
+      &quot;2016-03-30&quot;: 4557.907602932075,&#xd;
+      &quot;2015-12-30&quot;: 2262.1454557907805,&#xd;
+      &quot;2015-09-30&quot;: 99.68018099533747,&#xd;
+      &quot;2015-06-30&quot;: 6983.143633065953,&#xd;
+      &quot;2015-03-30&quot;: 7069.653413069492,&#xd;
+      &quot;2014-12-30&quot;: 7165.89689795289,&#xd;
+      &quot;2014-09-30&quot;: 8480.330165237177,&#xd;
+      &quot;2014-06-30&quot;: 1377.5296538735038,&#xd;
+      &quot;2014-03-30&quot;: 9507.347201176943,&#xd;
+      &quot;2013-12-30&quot;: 7785.067470015552,&#xd;
+      &quot;2013-09-30&quot;: 3069.1703115838327,&#xd;
+      &quot;2013-06-30&quot;: 195.48392543598112,&#xd;
+      &quot;2013-03-30&quot;: 7998.85515088033,&#xd;
+      &quot;2012-12-30&quot;: 1417.4808753111772,&#xd;
+      &quot;2012-09-30&quot;: 9140.97586385386,&#xd;
+      &quot;2012-06-30&quot;: 4311.258920395853,&#xd;
+      &quot;2012-03-30&quot;: 4239.4654850829875,&#xd;
+      &quot;2011-12-30&quot;: 8347.674529207767,&#xd;
+      &quot;2011-09-30&quot;: 3427.392240111182,&#xd;
+      &quot;2011-06-30&quot;: 7607.686017317745,&#xd;
+      &quot;2011-03-30&quot;: 7426.167937176645,&#xd;
+      &quot;2010-12-30&quot;: 6662.488181917,&#xd;
+      &quot;2010-09-30&quot;: 280.7517224004741,&#xd;
+      &quot;2010-06-30&quot;: 6350.121849736883,&#xd;
+      &quot;2010-03-30&quot;: 1378.265505669943,&#xd;
+      &quot;2009-12-30&quot;: 2666.870283079716,&#xd;
+      &quot;2009-09-30&quot;: 4482.093040434284,&#xd;
+      &quot;2009-06-30&quot;: 6652.946322043996,&#xd;
+      &quot;2009-03-30&quot;: 6481.80978321268,&#xd;
+      &quot;2008-12-30&quot;: 4348.701093906112,&#xd;
+      &quot;2008-09-30&quot;: 863.8326526115445,&#xd;
+      &quot;2008-06-30&quot;: 6127.002335337217,&#xd;
+      &quot;2008-03-30&quot;: 9008.926983980657,&#xd;
+      &quot;2007-12-30&quot;: 3962.0285753601124,&#xd;
+      &quot;2007-09-30&quot;: 7763.927135791895,&#xd;
+      &quot;2007-06-30&quot;: 9337.292654559564,&#xd;
+      &quot;2007-03-30&quot;: 9517.299394729926,&#xd;
+      &quot;2006-12-30&quot;: 5734.350201492655,&#xd;
+      &quot;2006-09-30&quot;: 8565.371169338172,&#xd;
+      &quot;2006-06-30&quot;: 4606.785846357776,&#xd;
+      &quot;2006-03-30&quot;: 5129.885901965828,&#xd;
+      &quot;2005-12-30&quot;: 2455.425839371189,&#xd;
+      &quot;2005-09-30&quot;: 6002.517709859401,&#xd;
+      &quot;2005-06-30&quot;: 6674.358559185892,&#xd;
+      &quot;2005-03-31&quot;: 1030.424825917675,&#xd;
+      &quot;2004-12-31&quot;: 6272.588010707629&#xd;
+    },&#xd;
+    &quot;MTR3&quot;: {&#xd;
+      &quot;2019-09-30&quot;: 4255.532424176825,&#xd;
+      &quot;2019-06-30&quot;: 7996.226301640719,&#xd;
+      &quot;2019-03-30&quot;: 1235.3529454862414,&#xd;
+      &quot;2018-12-30&quot;: 7755.980858418139,&#xd;
+      &quot;2018-09-30&quot;: 3076.520083029941,&#xd;
+      &quot;2018-06-30&quot;: 9715.772785251364,&#xd;
+      &quot;2018-03-30&quot;: 4452.5736783547345,&#xd;
+      &quot;2017-12-30&quot;: 5890.037550202942,&#xd;
+      &quot;2017-09-30&quot;: 5522.347676606322,&#xd;
+      &quot;2017-06-30&quot;: 3419.9763620280696,&#xd;
+      &quot;2017-03-30&quot;: 7999.181654838565,&#xd;
+      &quot;2016-12-30&quot;: 1503.5229400055919,&#xd;
+      &quot;2016-09-30&quot;: 5175.01245723732,&#xd;
+      &quot;2016-06-30&quot;: 4152.152049867217,&#xd;
+      &quot;2016-03-30&quot;: 4557.907602932075,&#xd;
+      &quot;2015-12-30&quot;: 2262.1454557907805,&#xd;
+      &quot;2015-09-30&quot;: 99.68018099533747,&#xd;
+      &quot;2015-06-30&quot;: 6983.143633065953,&#xd;
+      &quot;2015-03-30&quot;: 7069.653413069492,&#xd;
+      &quot;2014-12-30&quot;: 7165.89689795289,&#xd;
+      &quot;2014-09-30&quot;: 8480.330165237177,&#xd;
+      &quot;2014-06-30&quot;: 1377.5296538735038,&#xd;
+      &quot;2014-03-30&quot;: 9507.347201176943,&#xd;
+      &quot;2013-12-30&quot;: 7785.067470015552,&#xd;
+      &quot;2013-09-30&quot;: 3069.1703115838327,&#xd;
+      &quot;2013-06-30&quot;: 195.48392543598112,&#xd;
+      &quot;2013-03-30&quot;: 7998.85515088033,&#xd;
+      &quot;2012-12-30&quot;: 1417.4808753111772,&#xd;
+      &quot;2012-09-30&quot;: 9140.97586385386,&#xd;
+      &quot;2012-06-30&quot;: 4311.258920395853,&#xd;
+      &quot;2012-03-30&quot;: 4239.4654850829875,&#xd;
+      &quot;2011-12-30&quot;: 8347.674529207767,&#xd;
+      &quot;2011-09-30&quot;: 3427.392240111182,&#xd;
+      &quot;2011-06-30&quot;: 7607.686017317745,&#xd;
+      &quot;2011-03-30&quot;: 7426.167937176645,&#xd;
+      &quot;2010-12-30&quot;: 6662.488181917,&#xd;
+      &quot;2010-09-30&quot;: 280.7517224004741,&#xd;
+      &quot;2010-06-30&quot;: 6350.121849736883,&#xd;
+      &quot;2010-03-30&quot;: 1378.265505669943,&#xd;
+      &quot;2009-12-30&quot;: 2666.870283079716,&#xd;
+      &quot;2009-09-30&quot;: 4482.093040434284,&#xd;
+      &quot;2009-06-30&quot;: 6652.946322043996,&#xd;
+      &quot;2009-03-30&quot;: 6481.80978321268,&#xd;
+      &quot;2008-12-30&quot;: 4348.701093906112,&#xd;
+      &quot;2008-09-30&quot;: 863.8326526115445,&#xd;
+      &quot;2008-06-30&quot;: 6127.002335337217,&#xd;
+      &quot;2008-03-30&quot;: 9008.926983980657,&#xd;
+      &quot;2007-12-30&quot;: 3962.0285753601124,&#xd;
+      &quot;2007-09-30&quot;: 7763.927135791895,&#xd;
+      &quot;2007-06-30&quot;: 9337.292654559564,&#xd;
+      &quot;2007-03-30&quot;: 9517.299394729926,&#xd;
+      &quot;2006-12-30&quot;: 5734.350201492655,&#xd;
+      &quot;2006-09-30&quot;: 8565.371169338172,&#xd;
+      &quot;2006-06-30&quot;: 4606.785846357776,&#xd;
+      &quot;2006-03-30&quot;: 5129.885901965828,&#xd;
+      &quot;2005-12-30&quot;: 2455.425839371189,&#xd;
+      &quot;2005-09-30&quot;: 6002.517709859401,&#xd;
+      &quot;2005-06-30&quot;: 6674.358559185892,&#xd;
+      &quot;2005-03-31&quot;: 1030.424825917675,&#xd;
+      &quot;2004-12-31&quot;: 6272.588010707629&#xd;
+    },&#xd;
+    &quot;MTR4&quot;: {&#xd;
+      &quot;2019-09-30&quot;: 4255.532424176825,&#xd;
+      &quot;2019-06-30&quot;: 7996.226301640719,&#xd;
+      &quot;2019-03-30&quot;: 1235.3529454862414,&#xd;
+      &quot;2018-12-30&quot;: 7755.980858418139,&#xd;
+      &quot;2018-09-30&quot;: 3076.520083029941,&#xd;
+      &quot;2018-06-30&quot;: 9715.772785251364,&#xd;
+      &quot;2018-03-30&quot;: 4452.5736783547345,&#xd;
+      &quot;2017-12-30&quot;: 5890.037550202942,&#xd;
+      &quot;2017-09-30&quot;: 5522.347676606322,&#xd;
+      &quot;2017-06-30&quot;: 3419.9763620280696,&#xd;
+      &quot;2017-03-30&quot;: 7999.181654838565,&#xd;
+      &quot;2016-12-30&quot;: 1503.5229400055919,&#xd;
+      &quot;2016-09-30&quot;: 5175.01245723732,&#xd;
+      &quot;2016-06-30&quot;: 4152.152049867217,&#xd;
+      &quot;2016-03-30&quot;: 4557.907602932075,&#xd;
+      &quot;2015-12-30&quot;: 2262.1454557907805,&#xd;
+      &quot;2015-09-30&quot;: 99.68018099533747,&#xd;
+      &quot;2015-06-30&quot;: 6983.143633065953,&#xd;
+      &quot;2015-03-30&quot;: 7069.653413069492,&#xd;
+      &quot;2014-12-30&quot;: 7165.89689795289,&#xd;
+      &quot;2014-09-30&quot;: 8480.330165237177,&#xd;
+      &quot;2014-06-30&quot;: 1377.5296538735038,&#xd;
+      &quot;2014-03-30&quot;: 9507.347201176943,&#xd;
+      &quot;2013-12-30&quot;: 7785.067470015552,&#xd;
+      &quot;2013-09-30&quot;: 3069.1703115838327,&#xd;
+      &quot;2013-06-30&quot;: 195.48392543598112,&#xd;
+      &quot;2013-03-30&quot;: 7998.85515088033,&#xd;
+      &quot;2012-12-30&quot;: 1417.4808753111772,&#xd;
+      &quot;2012-09-30&quot;: 9140.97586385386,&#xd;
+      &quot;2012-06-30&quot;: 4311.258920395853,&#xd;
+      &quot;2012-03-30&quot;: 4239.4654850829875,&#xd;
+      &quot;2011-12-30&quot;: 8347.674529207767,&#xd;
+      &quot;2011-09-30&quot;: 3427.392240111182,&#xd;
+      &quot;2011-06-30&quot;: 7607.686017317745,&#xd;
+      &quot;2011-03-30&quot;: 7426.167937176645,&#xd;
+      &quot;2010-12-30&quot;: 6662.488181917,&#xd;
+      &quot;2010-09-30&quot;: 280.7517224004741,&#xd;
+      &quot;2010-06-30&quot;: 6350.121849736883,&#xd;
+      &quot;2010-03-30&quot;: 1378.265505669943,&#xd;
+      &quot;2009-12-30&quot;: 2666.870283079716,&#xd;
+      &quot;2009-09-30&quot;: 4482.093040434284,&#xd;
+      &quot;2009-06-30&quot;: 6652.946322043996,&#xd;
+      &quot;2009-03-30&quot;: 6481.80978321268,&#xd;
+      &quot;2008-12-30&quot;: 4348.701093906112,&#xd;
+      &quot;2008-09-30&quot;: 863.8326526115445,&#xd;
+      &quot;2008-06-30&quot;: 6127.002335337217,&#xd;
+      &quot;2008-03-30&quot;: 9008.926983980657,&#xd;
+      &quot;2007-12-30&quot;: 3962.0285753601124,&#xd;
+      &quot;2007-09-30&quot;: 7763.927135791895,&#xd;
+      &quot;2007-06-30&quot;: 9337.292654559564,&#xd;
+      &quot;2007-03-30&quot;: 9517.299394729926,&#xd;
+      &quot;2006-12-30&quot;: 5734.350201492655,&#xd;
+      &quot;2006-09-30&quot;: 8565.371169338172,&#xd;
+      &quot;2006-06-30&quot;: 4606.785846357776,&#xd;
+      &quot;2006-03-30&quot;: 5129.885901965828,&#xd;
+      &quot;2005-12-30&quot;: 2455.425839371189,&#xd;
+      &quot;2005-09-30&quot;: 6002.517709859401,&#xd;
+      &quot;2005-06-30&quot;: 6674.358559185892,&#xd;
+      &quot;2005-03-31&quot;: 1030.424825917675,&#xd;
+      &quot;2004-12-31&quot;: 6272.588010707629&#xd;
+    },&#xd;
+    &quot;MTR5&quot;: {&#xd;
+      &quot;2019-09-30&quot;: 4255.532424176825,&#xd;
+      &quot;2019-06-30&quot;: 7996.226301640719,&#xd;
+      &quot;2019-03-30&quot;: 1235.3529454862414,&#xd;
+      &quot;2018-12-30&quot;: 7755.980858418139,&#xd;
+      &quot;2018-09-30&quot;: 3076.520083029941,&#xd;
+      &quot;2018-06-30&quot;: 9715.772785251364,&#xd;
+      &quot;2018-03-30&quot;: 4452.5736783547345,&#xd;
+      &quot;2017-12-30&quot;: 5890.037550202942,&#xd;
+      &quot;2017-09-30&quot;: 5522.347676606322,&#xd;
+      &quot;2017-06-30&quot;: 3419.9763620280696,&#xd;
+      &quot;2017-03-30&quot;: 7999.181654838565,&#xd;
+      &quot;2016-12-30&quot;: 1503.5229400055919,&#xd;
+      &quot;2016-09-30&quot;: 5175.01245723732,&#xd;
+      &quot;2016-06-30&quot;: 4152.152049867217,&#xd;
+      &quot;2016-03-30&quot;: 4557.907602932075,&#xd;
+      &quot;2015-12-30&quot;: 2262.1454557907805,&#xd;
+      &quot;2015-09-30&quot;: 99.68018099533747,&#xd;
+      &quot;2015-06-30&quot;: 6983.143633065953,&#xd;
+      &quot;2015-03-30&quot;: 7069.653413069492,&#xd;
+      &quot;2014-12-30&quot;: 7165.89689795289,&#xd;
+      &quot;2014-09-30&quot;: 8480.330165237177,&#xd;
+      &quot;2014-06-30&quot;: 1377.5296538735038,&#xd;
+      &quot;2014-03-30&quot;: 9507.347201176943,&#xd;
+      &quot;2013-12-30&quot;: 7785.067470015552,&#xd;
+      &quot;2013-09-30&quot;: 3069.1703115838327,&#xd;
+      &quot;2013-06-30&quot;: 195.48392543598112,&#xd;
+      &quot;2013-03-30&quot;: 7998.85515088033,&#xd;
+      &quot;2012-12-30&quot;: 1417.4808753111772,&#xd;
+      &quot;2012-09-30&quot;: 9140.97586385386,&#xd;
+      &quot;2012-06-30&quot;: 4311.258920395853,&#xd;
+      &quot;2012-03-30&quot;: 4239.4654850829875,&#xd;
+      &quot;2011-12-30&quot;: 8347.674529207767,&#xd;
+      &quot;2011-09-30&quot;: 3427.392240111182,&#xd;
+      &quot;2011-06-30&quot;: 7607.686017317745,&#xd;
+      &quot;2011-03-30&quot;: 7426.167937176645,&#xd;
+      &quot;2010-12-30&quot;: 6662.488181917,&#xd;
+      &quot;2010-09-30&quot;: 280.7517224004741,&#xd;
+      &quot;2010-06-30&quot;: 6350.121849736883,&#xd;
+      &quot;2010-03-30&quot;: 1378.265505669943,&#xd;
+      &quot;2009-12-30&quot;: 2666.870283079716,&#xd;
+      &quot;2009-09-30&quot;: 4482.093040434284,&#xd;
+      &quot;2009-06-30&quot;: 6652.946322043996,&#xd;
+      &quot;2009-03-30&quot;: 6481.80978321268,&#xd;
+      &quot;2008-12-30&quot;: 4348.701093906112,&#xd;
+      &quot;2008-09-30&quot;: 863.8326526115445,&#xd;
+      &quot;2008-06-30&quot;: 6127.002335337217,&#xd;
+      &quot;2008-03-30&quot;: 9008.926983980657,&#xd;
+      &quot;2007-12-30&quot;: 3962.0285753601124,&#xd;
+      &quot;2007-09-30&quot;: 7763.927135791895,&#xd;
+      &quot;2007-06-30&quot;: 9337.292654559564,&#xd;
+      &quot;2007-03-30&quot;: 9517.299394729926,&#xd;
+      &quot;2006-12-30&quot;: 5734.350201492655,&#xd;
+      &quot;2006-09-30&quot;: 8565.371169338172,&#xd;
+      &quot;2006-06-30&quot;: 4606.785846357776,&#xd;
+      &quot;2006-03-30&quot;: 5129.885901965828,&#xd;
+      &quot;2005-12-30&quot;: 2455.425839371189,&#xd;
+      &quot;2005-09-30&quot;: 6002.517709859401,&#xd;
+      &quot;2005-06-30&quot;: 6674.358559185892,&#xd;
+      &quot;2005-03-31&quot;: 1030.424825917675,&#xd;
+      &quot;2004-12-31&quot;: 6272.588010707629&#xd;
+    }&#xd;
+  }&#xd;
+}</stringProp>
+                <stringProp name="Argument.metadata">=</stringProp>
+              </elementProp>
+            </collectionProp>
+          </elementProp>
+          <stringProp name="HTTPSampler.domain">localhost</stringProp>
+          <stringProp name="HTTPSampler.port">8080</stringProp>
+          <stringProp name="HTTPSampler.protocol">http</stringProp>
+          <stringProp name="HTTPSampler.contentEncoding">application/json</stringProp>
+          <stringProp name="HTTPSampler.path">/api/add</stringProp>
+          <stringProp name="HTTPSampler.method">POST</stringProp>
+          <boolProp name="HTTPSampler.follow_redirects">true</boolProp>
+          <boolProp name="HTTPSampler.auto_redirects">false</boolProp>
+          <boolProp name="HTTPSampler.use_keepalive">true</boolProp>
+          <boolProp name="HTTPSampler.DO_MULTIPART_POST">false</boolProp>
+          <stringProp name="HTTPSampler.embedded_url_re"></stringProp>
+          <stringProp name="HTTPSampler.connect_timeout"></stringProp>
+          <stringProp name="HTTPSampler.response_timeout"></stringProp>
+        </HTTPSamplerProxy>
+        <hashTree/>
+        <ResultCollector guiclass="SummaryReport" testclass="ResultCollector" testname="Summary Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+        <ResultCollector guiclass="StatVisualizer" testclass="ResultCollector" testname="Aggregate Report" enabled="true">
+          <boolProp name="ResultCollector.error_logging">false</boolProp>
+          <objProp>
+            <name>saveConfig</name>
+            <value class="SampleSaveConfiguration">
+              <time>true</time>
+              <latency>true</latency>
+              <timestamp>true</timestamp>
+              <success>true</success>
+              <label>true</label>
+              <code>true</code>
+              <message>true</message>
+              <threadName>true</threadName>
+              <dataType>true</dataType>
+              <encoding>false</encoding>
+              <assertions>true</assertions>
+              <subresults>true</subresults>
+              <responseData>false</responseData>
+              <samplerData>false</samplerData>
+              <xml>false</xml>
+              <fieldNames>true</fieldNames>
+              <responseHeaders>false</responseHeaders>
+              <requestHeaders>false</requestHeaders>
+              <responseDataOnError>false</responseDataOnError>
+              <saveAssertionResultsFailureMessage>true</saveAssertionResultsFailureMessage>
+              <assertionsResultsToSave>0</assertionsResultsToSave>
+              <bytes>true</bytes>
+              <sentBytes>true</sentBytes>
+              <url>true</url>
+              <threadCounts>true</threadCounts>
+              <idleTime>true</idleTime>
+              <connectTime>true</connectTime>
+            </value>
+          </objProp>
+          <stringProp name="filename"></stringProp>
+        </ResultCollector>
+        <hashTree/>
+      </hashTree>
+    </hashTree>
+  </hashTree>
+</jmeterTestPlan>
